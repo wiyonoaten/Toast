@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4385F585-D4B3-4B90-98BD-3834D63885BF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Toast</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>807C753B-E4D7-44C4-ADCA-D3A8B616A885</key>
+		<string>https://github.com/scalessec/Toast.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Toast.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>807C753B-E4D7-44C4-ADCA-D3A8B616A885</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/scalessec/Toast.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>807C753B-E4D7-44C4-ADCA-D3A8B616A885</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>807C753B-E4D7-44C4-ADCA-D3A8B616A885</string>
+			<key>IDESourceControlWCCName</key>
+			<string>scalessec-Toast</string>
+		</dict>
+	</array>
+</dict>
+</plist>

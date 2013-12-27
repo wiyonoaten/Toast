@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "151FC0D113D34B7A007DC282"
+               BlueprintIdentifier = "2D8436A4186DBBBB00C7C7D1"
                BuildableName = "Toast.app"
                BlueprintName = "Toast"
                ReferencedContainer = "container:Toast.xcodeproj">
@@ -41,7 +41,7 @@
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       displayScaleIsEnabled = "NO"
       displayScale = "1.00"
       launchStyle = "0"
@@ -53,7 +53,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "151FC0D113D34B7A007DC282"
+            BlueprintIdentifier = "2D8436A4186DBBBB00C7C7D1"
             BuildableName = "Toast.app"
             BlueprintName = "Toast"
             ReferencedContainer = "container:Toast.xcodeproj">
@@ -73,7 +73,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "151FC0D113D34B7A007DC282"
+            BlueprintIdentifier = "2D8436A4186DBBBB00C7C7D1"
             BuildableName = "Toast.app"
             BlueprintName = "Toast"
             ReferencedContainer = "container:Toast.xcodeproj">

@@ -1,0 +1,6 @@
+build
+libToastLib.a
+Toast.xcodeproj/project.xcworkspace/xcuserdata
+Toast.xcodeproj/xcuserdata
+ToastLib/ToastLib.xcodeproj/xcuserdata
+scalessec-Toast/scalessec-Toast.xcodeproj/xcuserdata
