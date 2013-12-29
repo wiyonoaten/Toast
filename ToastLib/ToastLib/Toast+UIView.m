@@ -60,45 +60,57 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
 - (void)handleToastTapped:(UITapGestureRecognizer *)recognizer;
 - (CGPoint)centerPointForPosition:(id)position withToast:(UIView *)toast;
 - (UIView *)viewForMessage:(NSString *)message title:(NSString *)title image:(UIImage *)image;
-
+    
 @end
 
 
 @implementation UIView (Toast)
+    
+static NSMutableDictionary *s_delegateLookup;
+    
++ (void) initialize
+{
+    s_delegateLookup = [[NSMutableDictionary alloc] init];
+}
 
 #pragma mark - Toast Methods
 
-- (void)makeToast:(NSString *)message {
-    [self makeToast:message duration:CSToastDefaultDuration position:CSToastDefaultPosition];
+- (void)makeToast:(NSString *)message withDelegate:(id<SCLToastDelegate>)delegate {
+    [self makeToast:message duration:CSToastDefaultDuration position:CSToastDefaultPosition withDelegate:delegate];
 }
 
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position {
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position withDelegate:(id<SCLToastDelegate>)delegate {
     UIView *toast = [self viewForMessage:message title:nil image:nil];
-    [self showToast:toast duration:duration position:position];  
+    [self showToast:toast duration:duration position:position withDelegate:delegate];
 }
 
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position title:(NSString *)title {
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position title:(NSString *)title withDelegate:(id<SCLToastDelegate>)delegate {
     UIView *toast = [self viewForMessage:message title:title image:nil];
-    [self showToast:toast duration:duration position:position];  
+    [self showToast:toast duration:duration position:position withDelegate:delegate];
 }
 
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position image:(UIImage *)image {
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration position:(id)position image:(UIImage *)image withDelegate:(id<SCLToastDelegate>)delegate {
     UIView *toast = [self viewForMessage:message title:nil image:image];
-    [self showToast:toast duration:duration position:position];  
+    [self showToast:toast duration:duration position:position withDelegate:delegate];
 }
 
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration  position:(id)position title:(NSString *)title image:(UIImage *)image {
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)duration  position:(id)position title:(NSString *)title image:(UIImage *)image withDelegate:(id<SCLToastDelegate>)delegate {
     UIView *toast = [self viewForMessage:message title:title image:image];
-    [self showToast:toast duration:duration position:position];  
+    [self showToast:toast duration:duration position:position withDelegate:delegate];
 }
 
-- (void)showToast:(UIView *)toast {
-    [self showToast:toast duration:CSToastDefaultDuration position:CSToastDefaultPosition];
+- (void)showToast:(UIView *)toast withDelegate:(id<SCLToastDelegate>)delegate {
+    [self showToast:toast duration:CSToastDefaultDuration position:CSToastDefaultPosition withDelegate:delegate];
 }
 
-- (void)showToast:(UIView *)toast duration:(NSTimeInterval)duration position:(id)point {
+- (void)showToast:(UIView *)toast duration:(NSTimeInterval)duration position:(id)point withDelegate:(id<SCLToastDelegate>)delegate {
     toast.center = [self centerPointForPosition:point withToast:toast];
     toast.alpha = 0.0;
+    
+    if (delegate)
+    {
+        [s_delegateLookup setObject:delegate forKey:[NSValue valueWithNonretainedObject:toast]];
+    }
     
     if (CSToastHidesOnTap) {
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:toast action:@selector(handleToastTapped:)];
@@ -144,6 +156,17 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     [timer invalidate];
     
     [self hideToast:recognizer.view];
+    
+    // Notify the dismiss event to registered delegate (if any) and then unregister it
+    id<SCLToastDelegate> delegate = [s_delegateLookup objectForKey:[NSValue valueWithNonretainedObject:recognizer.view]];
+    if (delegate)
+    {
+        [s_delegateLookup removeObjectForKey:[NSValue valueWithNonretainedObject:recognizer.view]];
+        
+        id context = [delegate respondsToSelector:@selector(contextObject)] ? [delegate performSelector:@selector(contextObject)] : nil;
+        
+        [delegate toastDidDismiss:recognizer.view contextObject:context];
+    }
 }
 
 #pragma mark - Toast Activity Methods

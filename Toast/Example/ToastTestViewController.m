@@ -6,7 +6,6 @@
 //
 
 #import "ToastTestViewController.h"
-#import "ToastLib/Toast+UIView.h"
 
 @interface ToastTestViewController ()
 
@@ -18,6 +17,12 @@
 @end
 
 @implementation ToastTestViewController
+    
+- (void)toastDidDismiss:(UIView *)toast contextObject:(id)contextObject
+{
+    // Make toast
+    [self.view makeToast:[NSString stringWithFormat:@"toastDidDismiss fired for %@ with contextObject=%@", toast.description, [contextObject description]] withDelegate:nil];
+}
 
 #pragma mark - IBActions
 
@@ -27,7 +32,7 @@
             
         case 0: {
             // Make toast
-            [self.view makeToast:@"This is a piece of toast."];
+            [self.view makeToast:@"This is a piece of toast (with delegate)." withDelegate:self];
             break;
         }
             
@@ -36,7 +41,8 @@
             [self.view makeToast:@"This is a piece of toast with a title."
                         duration:3.0
                         position:@"top"
-                           title:@"Toast Title"];
+                           title:@"Toast Title"
+                    withDelegate:nil];
             
             break;
         }
@@ -46,7 +52,8 @@
             [self.view makeToast:@"This is a piece of toast with an image."
                         duration:3.0
                         position:@"center"
-                           image:[UIImage imageNamed:@"toast.png"]];
+                           image:[UIImage imageNamed:@"toast.png"]
+                    withDelegate:nil];
             break;
         }
             
@@ -56,7 +63,8 @@
                         duration:3.0
                         position:@"bottom"
                            title:@"Toast Title"
-                           image:[UIImage imageNamed:@"toast.png"]];
+                           image:[UIImage imageNamed:@"toast.png"]
+                    withDelegate:nil];
             break;
         }
             
@@ -68,7 +76,8 @@
             
             [self.view showToast:customView
                         duration:2.0
-                        position:@"center"];
+                        position:@"center"
+                    withDelegate:nil];
             
             break;
         }
@@ -79,7 +88,8 @@
             
             [self.view showToast:toastView
                         duration:2.0
-                        position:[NSValue valueWithCGPoint:CGPointMake(110, 110)]]; // wrap CGPoint in an NSValue object
+                        position:[NSValue valueWithCGPoint:CGPointMake(110, 110)]
+                    withDelegate:nil]; // wrap CGPoint in an NSValue object
             
             break;
         }

@@ -31,14 +31,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@protocol SCLToastDelegate <NSObject>
+@required
+- (void)toastDidDismiss:(UIView *)toast contextObject:(id) contextObject;
+@optional
+- (id)contextObject;
+@end
+
 @interface UIView (Toast)
 
 // each makeToast method creates a view and displays it as toast
-- (void)makeToast:(NSString *)message;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position image:(UIImage *)image;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title;
-- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title image:(UIImage *)image;
+- (void)makeToast:(NSString *)message withDelegate:(id<SCLToastDelegate>)delegate;
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position withDelegate:(id<SCLToastDelegate>)delegate;
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position image:(UIImage *)image withDelegate:(id<SCLToastDelegate>)delegate;
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title withDelegate:(id<SCLToastDelegate>)delegate;
+- (void)makeToast:(NSString *)message duration:(NSTimeInterval)interval position:(id)position title:(NSString *)title image:(UIImage *)image withDelegate:(id<SCLToastDelegate>)delegate;
 
 // displays toast with an activity spinner
 - (void)makeToastActivity;
@@ -46,7 +53,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - (void)hideToastActivity;
 
 // the showToast methods display any view as toast
-- (void)showToast:(UIView *)toast;
-- (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point;
+- (void)showToast:(UIView *)toast withDelegate:(id<SCLToastDelegate>)delegate;
+- (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point withDelegate:(id<SCLToastDelegate>)delegate;
 
 @end

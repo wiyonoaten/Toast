@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ToastLib/Toast+UIView.h"
 
-@interface ToastTestViewController : UIViewController
+@interface ToastTestViewController : UIViewController<SCLToastDelegate>
 
 @end
