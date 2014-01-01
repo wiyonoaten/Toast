@@ -78,19 +78,29 @@ namespace ScalessecToastBindingLib {
 	public partial interface Toast_UIView {
 
 		[Export ("makeToast:withDelegate:")]
-		void MakeToast (string message, SCLToastDelegate dlgt);
+		void MakeToast (string message, [NullAllowed] NSObject weakDelegate);
+		[Export ("makeToast:withDelegate:")]
+		void MakeToast (string message, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("makeToast:duration:position:withDelegate:")]
-		void MakeToast (string message, double intervalInSeconds, NSObject position, SCLToastDelegate dlgt);
+		void MakeToast (string message, double intervalInSeconds, NSObject position, [NullAllowed] NSObject weakDelegate);
+		[Export ("makeToast:duration:position:withDelegate:")]
+		void MakeToast (string message, double intervalInSeconds, NSObject position, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("makeToast:duration:position:image:withDelegate:")]
-		void MakeToast (string message, double intervalInSeconds, NSObject position, UIImage image, SCLToastDelegate dlgt);
+		void MakeToast (string message, double intervalInSeconds, NSObject position, UIImage image, [NullAllowed] NSObject weakDelegate);
+		[Export ("makeToast:duration:position:image:withDelegate:")]
+		void MakeToast (string message, double intervalInSeconds, NSObject position, UIImage image, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("makeToast:duration:position:title:withDelegate:")]
-		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, SCLToastDelegate dlgt);
+		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, [NullAllowed] NSObject weakDelegate);
+		[Export ("makeToast:duration:position:title:withDelegate:")]
+		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("makeToast:duration:position:title:image:withDelegate:")]
-		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, UIImage image, SCLToastDelegate dlgt);
+		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, UIImage image, [NullAllowed] NSObject weakDelegate);
+		[Export ("makeToast:duration:position:title:image:withDelegate:")]
+		void MakeToast (string message, double intervalInSeconds, NSObject position, string title, UIImage image, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("makeToastActivity")]
 		void MakeToastActivity ();
@@ -102,9 +112,13 @@ namespace ScalessecToastBindingLib {
 		void HideToastActivity ();
 
 		[Export ("showToast:withDelegate:")]
-		void ShowToast (UIView toast, SCLToastDelegate dlgt);
+		void ShowToast (UIView toast, [NullAllowed] NSObject weakDelegate);
+		[Export ("showToast:withDelegate:")]
+		void ShowToast (UIView toast, [NullAllowed] SCLToastDelegate dlgt);
 
 		[Export ("showToast:duration:position:withDelegate:")]
-		void ShowToast (UIView toast, double intervalInSeconds, NSObject point, SCLToastDelegate dlgt);
+		void ShowToast (UIView toast, double intervalInSeconds, NSObject point, [NullAllowed] NSObject weakDelegate);
+		[Export ("showToast:duration:position:withDelegate:")]
+		void ShowToast (UIView toast, double intervalInSeconds, NSObject point, [NullAllowed] SCLToastDelegate dlgt);
 	}
 }
